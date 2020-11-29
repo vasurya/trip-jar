@@ -1,0 +1,23 @@
+.container {
+  border: solid;
+  width: 25%;
+  padding: 5%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  text-align: left;
+  margin: 0.5% auto 0 auto;
+  box-sizing: border-box;
+}
+
+.login_h2 {
+  margin-bottom: 20%;
+}
+#check_box {
+  margin-right: 2%;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 50%;
+  }
+}
