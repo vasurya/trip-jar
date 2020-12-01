@@ -1,6 +1,21 @@
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+mongoose.connect("mongodb://localhost/userDB", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "MongoDB connection error"));
+
+const userSchema = new mongoose.Schema({
+  username: String,
+  password: String,
+});
+
+const User = mongoose.model("User", userSchema);
 
 const app = express();
 app.use(express.static(path.join(__dirname, "build")));
@@ -14,12 +29,19 @@ app.get("/user", function (req, res) {
 
 app.post("/user", function (req, res) {
   // console.log(JSON.stringify(req.body));
-  var newUser = {
+  var newUser = new User({
     username: req.body.username,
     password: req.body.password,
-  };
-  console.log(newUser);
-  res.send("Successfully added");
+  });
+
+  newUser.save(function (err) {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log("Saved");
+      res.send("Successfully Added item");
+    }
+  });
 });
 
 app.listen(process.env.PORT || 8080, function (req, res) {
