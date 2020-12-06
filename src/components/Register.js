@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useHistory } from 'react-router-dom';
+import Home from "./Home";
 import "./Register.css";
 const React = require("react");
 const axios = require("axios");
 
 function Register() {
+  const history = useHistory();
   const [register, setRegister] = useState(false);
   const [show, setShow] = useState("none");
   const [buttonText, setbuttonText] = useState("Login");
@@ -30,6 +33,7 @@ function Register() {
       if (pass !== conpass) {
         alert("Password does not match!");
       } else {
+      
         const userDetails = {
           username: username,
           password: pass,
@@ -39,6 +43,7 @@ function Register() {
           .then(function (response) {
             var parseObject = response.data;
             alert(parseObject);
+           
           })
           .catch(function (error) {
             console.log(error);
@@ -55,7 +60,24 @@ function Register() {
       }
     } else {
       // CHECK DETAILS WITH THE DATABASE AND REROUTE TO HOME PAGE IF SUCCESSFUL
-      alert("LOfu");
+      
+        history.push("/profile");
+
+      // const userDetails = {
+      //   username: username,
+      //   password: pass,
+      // };
+      // axios
+      //   .post("/login", userDetails)
+      //   .then(function (response) {
+      //     var parseObject = response.data;
+      //     alert(parseObject);
+
+      //   })
+      //   .catch(function (error) {
+      //     console.log(error);
+      //   });
+      // alert("LOfu");
     }
     event.preventDefault();
   }
