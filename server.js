@@ -32,7 +32,7 @@ app.get("/user", function (req, res) {
 app.post("/user", function (req, res) {
   // console.log(JSON.stringify(req.body));
   var plainTxtPass = req.body.password;
-  bcrypt.hash(plainTxtPass,10,function(error,hash){
+  bcrypt.hash(plainTxtPass, 10, function (error, hash) {
     var newUser = new User({
       username: req.body.username,
       password: hash,
@@ -45,13 +45,29 @@ app.post("/user", function (req, res) {
         res.send("Successfully Added item");
       }
     });
-  })
-  
- 
-
- 
+  });
 });
 
+app.post("/login",function(req,res){
+  var plainTxtPass = req.body.password;
+ 
+    User.findOne({username: req.body.username}, function(err,user){
+      if(err){
+        console.log(err);
+      }
+      else{
+        console.log(user.password);
+        // console.log();
+        // console.log("Found user"+user);
+        bcrypt.compare(plainTxtPass,user.password,function(err,result){
+          console.log(result);
+          res.send(result);
+        })
+      }
+    })
+
+ 
+})
 app.listen(process.env.PORT || 8080, function (req, res) {
   console.log("Listening on port 8080");
 });
