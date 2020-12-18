@@ -14,7 +14,7 @@ function App() {
         <Header />
         <Switch>
           <Route path="/" exact component={() => <Home />} />
-          <Route path="/profile" exact component={() => <Profile />} />
+          <Route path="/profile/:username" component={Profile} />
           <Route path="/compose" exact component={() => <Compose />} />
           <Route path="/register" exact component={() => <Register />} />
 

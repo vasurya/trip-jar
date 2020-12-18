@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import Home from "./Home";
+import Profile from "./Profile";
 import "./Register.css";
 const React = require("react");
 const axios = require("axios");
@@ -70,7 +70,8 @@ function Register() {
           var parseObject = response.data;
           // alert(parseObject);
           if (parseObject) {
-            history.push("/profile");
+            // <Profile />
+            history.push("/profile/"+userDetails.username);
           }
           else{
             alert("Username or Password does not match")
