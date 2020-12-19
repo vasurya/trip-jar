@@ -30,11 +30,11 @@ function Header() {
               Profile
             </Link>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <Link class="nav-link" to="/compose">
               Compose
             </Link>
-          </li>
+          </li> */}
         </ul>
       </div>
     </nav>

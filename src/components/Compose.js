@@ -1,7 +1,9 @@
 import "./Compose.css";
 const React = require("react");
 
-function Compose() {
+function Compose(props) {
+  let username = props.match.params.username;
+  alert("this is the compose page for user" + username);
   return (
     <div className="compose container">
       <h1 className="compose_h1">Compose</h1>

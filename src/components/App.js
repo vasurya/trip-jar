@@ -15,7 +15,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={() => <Home />} />
           <Route path="/profile/:username" component={Profile} />
-          <Route path="/compose" exact component={() => <Compose />} />
+          <Route path="/:username/compose" component={Compose} />
           <Route path="/register" exact component={() => <Register />} />
 
         </Switch>
